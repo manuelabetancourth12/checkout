@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Premium - Expert Code</title>
+    <style>
+        :root {
+            --bg-light: #F0F2F5;
+            --bg-dark: #212121;
+            --accent-yellow: #F6D35F;
+            --text-main: #333333;
+            --text-muted: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+        body {
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            display: flex;
+            width: 1000px;
+            height: 700px;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        /* --- IZQUIERDA: CARRITO --- */
+        .cart-section { flex: 1.5; padding: 40px; display: flex; flex-direction: column; }
+        
+        .cart-header { display: flex; align-items: center; margin-bottom: 30px; }
+        .logo-box { width: 40px; height: 40px; background: #333; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 15px; }
+        
+        .cart-items { flex-grow: 1; overflow-y: auto; }
+        .item { display: flex; align-items: center; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+        
+        /* Imágenes Reales */
+        .img-prod { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; margin-right: 20px; background: #f9f9f9; }
+        
+        .info { flex: 2; }
+        .info h4 { font-size: 16px; margin-bottom: 4px; }
+        .info p { font-size: 12px; color: var(--text-muted); }
+        
+        .qty { flex: 1; display: flex; align-items: center; font-weight: 600; }
+        .qty span { margin: 0 10px; }
+        .price { flex: 1.2; text-align: right; font-weight: 600; margin-right: 15px; }
+
+        /* --- DERECHA: PAGO --- */
+        .payment-section { flex: 1; background: var(--bg-dark); padding: 40px; color: white; display: flex; flex-direction: column; position: relative; }
+        
+        .payment-section::before { content: ""; position: absolute; left: 0; top: 10%; width: 5px; height: 50px; background: var(--accent-yellow); border-radius: 0 5px 5px 0; }
+
+        .payment-title { color: var(--accent-yellow); font-size: 22px; margin-bottom: 40px; }
+
+        /* Logos de Tarjetas */
+        .card-selector { margin-bottom: 30px; }
+        .card-selector p { font-size: 12px; color: #777; margin-bottom: 15px; }
+        .logos { display: flex; gap: 15px; }
+        .card-logo { 
+            width: 60px; height: 40px; border: 1px solid #444; border-radius: 8px; 
+            display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+        .card-logo img { height: 20px; filter: grayscale(1) brightness(2); }
+        .card-logo.active { border-color: white; background: rgba(255,255,255,0.1); }
+        .card-logo.active img { filter: none; }
+
+        /* Formulario */
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-size: 12px; color: #777; margin-bottom: 8px; }
+        .form-group input { width: 100%; background: none; border: none; border-bottom: 1px solid #444; color: white; padding: 5px 0; font-size: 15px; outline: none; }
+        .form-group input:focus { border-bottom-color: var(--accent-yellow); }
+
+        .row { display: flex; gap: 20px; }
+
+        .btn-checkout { 
+            margin-top: auto; width: 100%; padding: 18px; background: var(--accent-yellow); 
+            border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-checkout:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(246, 211, 95, 0.4); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
+        .back { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="cart-section">
+        <div class="cart-header">
+            <div class="logo-box">Q</div>
+            <h2>Your Shopping Cart</h2>
+        </div>
+
+        <div class="cart-items">
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=150" class="img-prod">
+                <div class="info"><h4>Denim T-Shirt</h4><p>Ref: 007197456</p><p>Blue</p></div>
+                <div class="qty"><span>-</span> 2 <span>+</span></div>
+                <div class="price">7500.00 NGN</div>
+                <div style="color:#ccc">✕</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=150" class="img-prod">
+                <div class="info"><h4>Denim Pants</h4><p>Ref: 011015233</p><p>Blue</p></div>
+                <div class="qty"><span>-</span> 3 <span>+</span></div>
+                <div class="price">9000.00 NGN</div>
+                <div style="color:#ccc">✕</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=150" class="img-prod">
+                <div class="info"><h4>Sony Smartwatch</h4><p>Ref: 004822981</p><p>Black</p></div>
+                <div class="qty"><span>-</span> 1 <span>+</span></div>
+                <div class="price">24500.00 NGN</div>
+                <div style="color:#ccc">✕</div>
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=150" class="img-prod">
+                <div class="info"><h4>Cognac Oxford</h4><p>Ref: 035772962</p><p>Brown</p></div>
+                <div class="qty"><span>-</span> 1 <span>+</span></div>
+                <div class="price">4500.00 NGN</div>
+                <div style="color:#ccc">✕</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="#" class="back">← Back to Shop</a>
+            <div>Subtotal: <strong>45500.00 NGN</strong></div>
+        </div>
+    </div>
+
+    <div class="payment-section">
+        <h3 class="payment-title">Card Details</h3>
+        
+        <div class="card-selector">
+            <p>Select Card Type</p>
+            <div class="logos">
+                <div class="card-logo active">
+                    <img src="https://static.vecteezy.com/system/resources/previews/019/550/688/original/white-mastercard-logo-free-vector.jpg" alt="MC">
+                </div>
+                <div class="card-logo">
+                    <img src="https://icon2.cleanpng.com/20180618/eka/aa69g7anr.webp" alt="Visa">
+                </div>
+                <div class="card-logo">
+                    <span style="font-size: 10px; font-weight: bold; color: #777;">VERVE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" placeholder="1234 5678 9101 1121">
+        </div>
+
+        <div class="row">
+            <div class="form-group" style="flex:1">
+                <label>Expiry Date</label>
+                <input type="text" placeholder="MM / YY">
+            </div>
+            <div class="form-group" style="flex:1">
+                <label>CVV</label>
+                <input type="text" placeholder="123">
+            </div>
+        </div>
+
+        <button class="btn-checkout">Checkout</button>
+    </div>
+</div>
+
+</body>
+</html>
